@@ -19,10 +19,12 @@
     var l = P.logo;
     return '<img src="' + attr(l.src) + '" alt="' + attr(P.client) + '" width="' + l.width + '" height="' + l.height + '" style="' + style + '">';
   }
-  var LOGO_HEADLINE = "height:1.15em;width:auto;vertical-align:-0.18em;margin-left:0.05em";
+  // proposal.js can set logo.headlineHeight (in em) for logos that look too big or small next to the text.
+  var LOGO_HEADLINE = "height:" + (P.logo.headlineHeight || 1.15) + "em;width:auto;vertical-align:" + (P.logo.headlineOffset || -0.18) + "em;margin-left:0.05em";
   var LOGO_FOOTER = "height:20px;width:auto;align-self:center;display:block";
 
   function priceHtml(o) {
+    if (!o.price) return "";   // no price set: show nothing (for light proposals without prices)
     var s = (o.from ? "<small>from</small> " : "") + o.price + (o.unit ? " <small>" + o.unit + "</small>" : "");
     if (o.price2) s += " · " + o.price2 + (o.unit2 ? " <small>" + o.unit2 + "</small>" : "");
     return s;
@@ -32,7 +34,7 @@
     var icon = ICONS[o.icon] || ICONS.flag;
     return '<div class="way"><div class="way-head"><div class="name">' +
       '<svg class="ic" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + icon + '</svg>' +
-      o.name + '</div><div class="price">' + priceHtml(o) + '</div></div>' +
+      o.name + '</div>' + (o.price ? '<div class="price">' + priceHtml(o) + '</div>' : '') + '</div>' +
       '<p class="desc">' + text + '</p></div>';
   }
 
@@ -54,9 +56,10 @@
       }).join("") +
       (P.curious.note ? '<p class="fine">' + P.curious.note + "</p>" : ""));
     fill("glance", P.offers.filter(function (o) { return o.onHome !== false; }).map(function (o) {
-      return '<a href="ways.html"><span>' + o.name + '</span><span class="p">' + priceHtml(o) + "</span></a>";
+      return '<a href="ways.html"><span>' + o.name + "</span>" + (o.price ? '<span class="p">' + priceHtml(o) + "</span>" : "") + "</a>";
     }).join(""));
-    fill("price-note", P.priceNote);
+    if (P.priceNote) fill("price-note", P.priceNote);
+    else { var pn = document.getElementById("price-note"); if (pn) pn.remove(); }
     var start = P.offers.filter(function (o) { return o.id === P.startWith; })[0] || P.offers[0];
     fill("start", offerHtml(start, start.homeText || start.text) +
       '<p class="fine"><a href="ways.html">See all the ways to work together</a></p>');
@@ -74,7 +77,7 @@
       var last = i === groups.length - 1;
       return '<section class="row' + (i === 0 ? " first" : "") + '"><div class="label">' + g.name + "</div><div>" +
         g.offers.map(function (o) { return offerHtml(o, o.text); }).join("") +
-        (last ? '<p class="fine">' + P.priceNote + "</p>" : "") +
+        (last && P.priceNote ? '<p class="fine">' + P.priceNote + "</p>" : "") +
         "</div></section>";
     }).join(""));
   }
