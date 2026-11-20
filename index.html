@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposal from Caro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="client/favicon.png">
+<link rel="apple-touch-icon" href="client/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body data-page="home">
+<header class="top">
+  <div class="wrap">
+    <nav class="menu" id="menu" aria-label="Main"></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero" style="padding-bottom:56px">
+      <div>
+        <h1 id="headline"></h1>
+        <p class="lead" id="intro"></p>
+      </div>
+    </section>
+
+    <section class="row">
+      <div class="label">What I'd be curious about</div>
+      <div class="lens" id="curious"></div>
+    </section>
+
+    <section class="row">
+      <div class="label">At a glance</div>
+      <div>
+        <div class="glance" id="glance"></div>
+        <p class="fine" id="price-note"></p>
+      </div>
+    </section>
+
+    <section class="row">
+      <div class="label">Where I'd start</div>
+      <div id="start"></div>
+    </section>
+
+    <section class="row">
+      <div class="label">Next step</div>
+      <div>
+        <p class="desc" id="next-step"></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap" id="footer"></div>
+</footer>
+<script src="proposal.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

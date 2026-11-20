@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it goes with Caro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="client/favicon.png">
+<link rel="apple-touch-icon" href="client/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body data-page="process">
+<header class="top">
+  <div class="wrap">
+    <nav class="menu" id="menu" aria-label="Main"></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="page-title">
+      <h1>How it goes</h1>
+    </section>
+
+    <section class="row first">
+      <div class="label">A first project</div>
+      <div>
+        <ol class="steps">
+          <li><span class="n">1</span><span>We hop on a short call and pick the focus together.</span></li>
+          <li><span class="n">2</span><span>Then I get going and share bits as I work, so you see things as they come together. I design in Figma, build quick prototypes with tools like Claude Code to test ideas early, and keep my files tidy so your team can pick them up easily.</span></li>
+          <li><span class="n">3</span><span>We finish with a walkthrough where I explain everything and you can ask me whatever you want.</span></li>
+        </ol>
+        <p class="fine" style="margin-top:24px" id="timing"></p>
+      </div>
+    </section>
+
+    <section class="row">
+      <div class="label">Next step</div>
+      <div>
+        <p class="desc" id="next-step"></p>
+      </div>
+    </section>
+    <div style="height:72px"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap" id="footer"></div>
+</footer>
+<script src="proposal.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
